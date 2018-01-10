@@ -1,0 +1,97 @@
+<style>
+  .event-panel {
+    margin: 10px;
+    border: 1px dashed #ccc; 
+  } 
+  .left-cage{
+    text-align: center;  
+    padding: 14px;
+    margin-left: 15px !important; 
+    background: #ddd;
+    border-right: 1px solid #a59494;
+  }
+  .heading-icons{
+    margin-right: 5px;
+    color: rgb(58, 56, 56)
+  }
+  .header-info-position{    
+    margin-top: -7px;
+    padding: 15px;
+  }
+.top-header-elemenet{ 
+  border-bottom: 1px dashed #807777;
+}
+.lower-header-elemenet{
+  margin-top: -6px !important;
+}
+.vote-button-panel{
+
+}
+.right-cage{
+  text-align: center;
+}
+.game-description{
+  margin-top: 10px;
+}
+.game-name{
+  
+}
+.vote-button-styles{
+  margin: 10px;
+}
+.add-on .input-group-btn > .btn { 
+  left:-2px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+/* stop the glowing blue shadow */
+.add-on .form-control:focus {
+ box-shadow:none;
+ -webkit-box-shadow:none; 
+ border-color:#cccccc; 
+} 
+
+.search-view{ 
+  display: flex;
+  justify-content: flex-end;
+}
+.searchForm{
+  margin-right: 10px;
+}
+
+</style>
+
+<div class="row search-view">  
+        <div class="input-group add-on col-md-5">
+          <input class="form-control" placeholder="Search by Sport"  [(ngModel)]="sportFilter.sport" name="searchTerm" id="searchTerm" type="text"/>
+          <div class="input-group-btn">
+            <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+          </div>
+        </div>  
+</div>
+ 
+<div class="panel-group">
+    <div class="panel panel-default event-panel" *ngFor='let poll of polls.events | filterBy: sportFilter'> 
+      <div class="panel-heading event-heading"> 
+          <div class="row">
+             <div class="col-md-3 left-cage">
+               <div class="header-info-position top-header-elemenet"><i class="fa fa-trophy heading-icons"></i>{{poll.sport}}</div> 
+               <div  class="header-info-position lower-header-elemenet"><i class="fa fa-globe heading-icons"></i>{{poll.country}}</div>
+             </div> 
+             
+             <div class="col-md-8 right-cage"> 
+              <div class="game-description"> Who will win the game between <span class="game-name"><strong>{{poll.name}}</strong></span> </div> 
+              <div class="team-description"> <i class="fa fa-plane heading-icons"></i> Away : <span class="team-name">{{poll.awayName}}</span> Vs <i class="fa fa-home heading-icons"></i> Home: <span class="team-name">{{poll.awayName}}</span> </div> 
+              <div class="btn-group btn-group row">
+                  <button type="button" class="btn btn-primary vote-button-styles col-md-4" (click)="vote(poll,'HOME')"> <i class="fa fa-home heading-icons"></i> Home</button>
+                  <button type="button" class="btn btn-success vote-button-styles" (click)="vote(poll,'DRAW')">Draw</button>
+                  <button type="button" class="btn btn-info vote-button-styles" (click)="vote(poll,'AWAY')"> <i class="fa fa-plane heading-icons"></i>Away</button>
+                </div>
+            </div> 
+          </div> 
+         </div>  
+    </div>
+    <!--div *ngIf="polls.events || (polls.events | filterBy: sportFilter).length === 0">No matching sports</div-->
+    <!--div *ngIf="polls.events.length === 0">No any Remaining Polls for you...!!!</div-->
+  </div>
+ 
