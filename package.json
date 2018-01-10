@@ -1,36 +1,25 @@
 {
-  "name": "latest-mean-login",
+  "name": "mean-app-with-scss",
   "version": "1.0.0",
-  "description": "MEAN stack with ANGULAR2",
+  "description": "Means Stack+ Angular2",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pradeephbac/MEAN-Stack-with-Angular2.git"
+    "url": "git+https://github.com/pradeephbac/RealTimeSportPollsApp.git"
   },
   "keywords": [
-    "MEAN",
+    "Mean",
     "Stack",
-    "Angular",
-    "2",
-    "Application"
+    "Angular2",
+    "mongodb"
   ],
   "author": "Chamal Pradeep",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/pradeephbac/MEAN-Stack-with-Angular2/issues"
+    "url": "https://github.com/pradeephbac/RealTimeSportPollsApp/issues"
   },
-  "homepage": "https://github.com/pradeephbac/MEAN-Stack-with-Angular2#readme",
-  "dependencies": {
-    "async": "^2.6.0",
-    "bcrypt-nodejs": "0.0.3",
-    "body-parser": "^1.18.2",
-    "cors": "^2.8.4",
-    "express": "^4.16.2",
-    "jsonwebtoken": "^8.1.0",
-    "mongoose": "^5.0.0-rc2"
-  }
+  "homepage": "https://github.com/pradeephbac/RealTimeSportPollsApp#readme"
 }
