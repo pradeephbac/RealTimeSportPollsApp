@@ -22,8 +22,16 @@ import {FlashMessagesModule} from 'angular2-flash-messages';
 import { BarChartComponent } from './components/charts/bar-chart/bar-chart.component';
 import { PieChartComponent } from './components/charts/pie-chart/pie-chart.component';
 import { PollsViewComponent } from './components/dashboard/polls/polls-view/polls-view.component';
+import { ResultsComponent } from './components/dashboard/results/results.component';
 
 import { AuthGuard } from './guards/app.guard';
+import { NotAuthGuard } from './guards/notAuth.guard';
+
+import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
+
+const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
+
+
 
 @NgModule({
   declarations: [
@@ -35,7 +43,8 @@ import { AuthGuard } from './guards/app.guard';
     LoginComponent,
     BarChartComponent,
     PieChartComponent,
-    PollsViewComponent
+    PollsViewComponent,
+    ResultsComponent
   ],
   imports: [
     BrowserModule,
@@ -45,9 +54,10 @@ import { AuthGuard } from './guards/app.guard';
     ReactiveFormsModule,
     FormsModule,
     Ng2FilterPipeModule,
-    FlashMessagesModule.forRoot()
+    FlashMessagesModule.forRoot(),
+    SocketIoModule.forRoot(config)
   ],
-  providers: [AuthService, PollsService, AuthGuard],
+  providers: [AuthService, PollsService, AuthGuard, NotAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -3,7 +3,10 @@ mongoose.Promise = global.Promise;
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt-nodejs');
 
- 
+const voteSchema = new Schema({
+    user_id: {type:String},
+    result: {type:String}
+});
 
 const eventSchema = new Schema({
     awayName: {
@@ -38,7 +41,9 @@ const eventSchema = new Schema({
     state: {
         type: String,
         required: true 
-    }
+    },
+    votes :[voteSchema]
+
 });
 
 module.exports = mongoose.model('Event', eventSchema); 

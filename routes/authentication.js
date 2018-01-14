@@ -70,7 +70,7 @@ module.exports = (router) => {
                                 res.json({success : false, message: "Password is invalid...!"});
                             } else {
                                 const token = jwt.sign({  userId: user._id }, config.secret, {expiresIn: '2h'});
-                                res.json({success : true, message: "success", token:token, user: {username : user.username}});      
+                                res.json({success : true, message: "success", token:token, user: {username : user.username, id:user._id}});      
                             }
                         }
                     }

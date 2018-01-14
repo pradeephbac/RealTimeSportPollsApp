@@ -1,4 +1,5 @@
 const Vote = require('../models/vote');
+const Event = require('../models/event');
 const VoteHistory = require('../models/voteHistory');
 const jwt = require('jsonwebtoken');
 const config = require('../config/database');
@@ -73,6 +74,54 @@ module.exports = (router) => {
         });
     });
 
+
+    //header interceptor
+    router.use((req, res, next) => {  
+        const token = req.headers['autherization'];
+        if (!token) {
+            res.json({
+                success: false,
+                message: " No Access Token Provided"
+            });
+        } else {
+            jwt.verify(token, config.secret, (err, decoded) => {
+                if (err) {
+                    res.json({
+                        success: false,
+                        message: " Token Invalid: " + err
+                    });
+                } else { 
+                    req.decoded = decoded;
+                    next();
+                }
+            })
+        }
+    });
+ 
+    router.post('/updateVoteResults', (req, res) => { 
+        const voteItem =req.body.result; 
+        Event.update(
+            { _id: req.body.event_id }, 
+            {
+                "$addToSet": {
+                  "votes":  voteItem
+                }
+              },
+             function (err, updatedEvent) {
+                if (err) {
+                    res.json({
+                        success: false,
+                        message: " Error occured :" + err
+                    });
+                } else {
+                    res.json({
+                        success: true,
+                        evenupdatedEventts: updatedEvent
+                    });
+                } 
+            }
+         ) 
+    });
 
     return router;
 }

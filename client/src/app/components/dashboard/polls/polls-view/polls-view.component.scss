@@ -1,0 +1,81 @@
+ .polls-window-wrapper {
+   .polls-list-wrapper {
+     .event-panel {
+       margin: 10px;
+       border: 1px dashed #ccc;
+       .voted-item {
+         position: absolute;
+         margin: -4px;
+         margin-top: 31px;
+         padding: 3px;
+         font-weight: 600;
+         color: #d02a2a;
+         font-size: 13px;
+         z-index: 10;
+         width: 100px;
+         justify-content: center;
+         border: 1px dashed red;
+         border-bottom: 1px dashed red;
+         -webkit-transform: rotate(-45deg);
+         -moz-transform: rotate(-45deg);
+         transform: rotate(-45deg);
+         display: flex;
+       }
+     }
+     .left-cage {
+       text-align: center;
+       padding: 14px;
+       margin-left: 15px !important;
+       background: #ddd;
+       border-right: 1px solid #a59494;
+       .top-header-elemenet {
+         border-bottom: 1px dashed #8d1616;
+       }
+       .lower-header-elemenet {
+         margin-top: -6px !important;
+       }
+       .header-info-position {
+         margin-top: -7px;
+         padding: 15px;
+       }
+       .heading-icons {
+         margin-right: 5px;
+         color: rgb(58, 56, 56)
+       }
+     }
+     .right-cage {
+       text-align: center;
+       .vote-button-styles {
+         margin: 10px;
+       }
+       .game-description {
+         margin-top: 10px;
+       }
+       .heading-icons {
+         margin-right: 5px;
+         color: rgb(58, 56, 56)
+       }
+       .voted-count {
+         width: 40px;
+         position: absolute;
+         right: -45px;
+         bottom: 7px;
+         color: #ada7a7;
+       }
+     }
+   }
+   .search-view {
+     display: flex;
+     justify-content: flex-end;
+     .add-on .form-control:focus {
+       box-shadow: none;
+       -webkit-box-shadow: none;
+       border-color: #cccccc;
+     }
+     .add-on .input-group-btn>.btn {
+       left: -2px;
+       -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+       box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+     }
+   }
+ }

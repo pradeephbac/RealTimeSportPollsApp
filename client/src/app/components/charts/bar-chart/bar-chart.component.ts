@@ -1,88 +1,76 @@
 import { Component, OnInit } from '@angular/core';
+import { PollsService } from '../../../services/pollsServices/polls.service';
+import * as _ from 'underscore';
+
 declare var jQuery: any;
 @Component({
-  selector: 'app-bar-chart',
-  templateUrl: './bar-chart.component.html',
-  styleUrls: ['./bar-chart.component.scss']
+    selector: 'app-bar-chart',
+    templateUrl: './bar-chart.component.html',
+    styleUrls: ['./bar-chart.component.scss']
 })
 export class BarChartComponent implements OnInit {
+    polls: any = [{ events: [] }];
+    sportGroup: any;
+    constructor(private pollsService: PollsService) { }
 
-  private data = [
-    {
-            name: 'USA',
-            data: [null, null, null, null, null, 6, 11, 32, 110, 235, 369, 640,
-                1005, 1436, 2063, 3057, 4618, 6444, 9822, 15468, 20434, 24126,
-                27387, 29459, 31056, 31982, 32040, 31233, 29224, 27342, 26662,
-                26956, 27912, 28999, 28965, 27826, 25579, 25722, 24826, 24605,
-                24304, 23464, 23708, 24099, 24357, 24237, 24401, 24344, 23586,
-                22380, 21004, 17287, 14747, 13076, 12555, 12144, 11009, 10950,
-                10871, 10824, 10577, 10527, 10475, 10421, 10358, 10295, 10104]
-        }, 
-          {
-            name: 'USSR/Russia',
-            data: [null, null, null, null, null, null, null, null, null, null,
-                5, 25, 50, 120, 150, 200, 426, 660, 869, 1060, 1605, 2471, 3322,
-                4238, 5221, 6129, 7089, 8339, 9399, 10538, 11643, 13092, 14478,
-                15915, 17385, 19055, 21205, 23044, 25393, 27935, 30062, 32049,
-                33952, 35804, 37431, 39197, 45000, 43000, 41000, 39000, 37000,
-                35000, 33000, 31000, 29000, 27000, 25000, 24000, 23000, 22000,
-                21000, 20000, 19000, 18000, 18000, 17000, 16000]
-        }];
-  constructor() { }
+    async getPolls(): Promise<any> {
+        await this.pollsService.getAllPolls().subscribe((polls) => {
+            this.polls = polls;
+            this.sportGroup = _.countBy(this.polls.events, 'sport');
 
-  ngOnInit() {
-    this.renderChart();
-  }
-  renderChart(){
-    jQuery('#container').highcharts({
-      chart: {
-        type: 'column'
-    },
-    title: {
-        text: 'Overall realtime Polls results by sport'
-    }, 
-    xAxis: {
-        categories: [
-            'Football',
-            'Hokey',
-            'Tenis',
-            'Cricket' 
-        ],
-        crosshair: true
-    },
-    yAxis: {
-        min: 0,
-        title: {
-            text: 'polls'
+            this.renderChart(this.sportGroup);
+        });
+
+    }
+
+    ngOnInit() {
+        this.getPolls();
+    }
+    renderChart(eventsBySport) {
+        const sportsCountArray = [];
+        const sportsArray = [];
+        for (const key in eventsBySport) {
+            if (eventsBySport.hasOwnProperty(key)) {
+                sportsArray.push(key);
+                sportsCountArray.push(eventsBySport[key]);
+            }
         }
-    },
-    tooltip: {
-        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0"><b>{point.y:.1f} polls</b></td></tr>',
-        footerFormat: '</table>',
-        shared: true,
-        useHTML: true
-    },
-    plotOptions: {
-        column: {
-            pointPadding: 0.2,
-            borderWidth: 0
-        }
-    },
-    series: [{
-        name: 'Home Wins',
-        data: [49, 71, 106, 129]
+        jQuery('#container').highcharts({
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Poll Events by Sports'
+            },
+            xAxis: {
+                categories: sportsArray,
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'polls'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y} polls</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Poll Events',
+                data: sportsCountArray
 
-    }, {
-        name: 'Away Wins',
-        data: [83, 78, 98, 93]
-
-    }, {
-        name: 'Draw',
-        data: [48, 38, 39, 41]
-
-    } ]
-    });
-  }
+            }]
+        });
+    }
 }

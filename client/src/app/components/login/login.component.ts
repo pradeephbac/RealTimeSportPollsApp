@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
     this.loginForm.controls['password'].enable();
   }
 
-  onLoginSubmit(){
+  onLoginSubmit() {
     this.processing = true;
     this.disableForm();
 
@@ -57,6 +57,7 @@ export class LoginComponent implements OnInit {
       }else{
         this.messageClass = "alert alert-success";
         this.message = data.message;
+        console.log(data.user)
         this.authService.storeuserInFrontEnd(data.token, data.user);
         setTimeout(() => {
           this.router.navigate(['/dashboard']); // Redirect to login view

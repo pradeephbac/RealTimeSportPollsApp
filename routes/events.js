@@ -5,6 +5,7 @@ const config = require('../config/database');
 
 var async = require('async');
 const path = require('path')
+var _ = require('underscore');
 // Request File System Module
 const fs = require('fs');
 
@@ -40,13 +41,15 @@ module.exports = (router) => {
                 if (err) {
                     message = {
                         success: false,
-                        message: " Error occured :" + err
+                        message: " Error occured :" + err,
+                        status: 500
                     };
                     callback(null, message);
                 } else {
                     message = {
                         success: true,
-                        message: "Events Saved Successfully...!"
+                        message: "Events Saved Successfully...!",
+                        status: 200
                     };
                     callback(null, message);
                 }
@@ -54,7 +57,8 @@ module.exports = (router) => {
         } else {
             message = {
                 success: false,
-                message: "Events are added already...!"
+                message: "Events are added already...!",
+                status: 200
             };
             callback(null, message);
         }
@@ -94,11 +98,11 @@ module.exports = (router) => {
                     events: events
                 });
             }
-
         });
 
     });
 
+    //header interceptor below from this code line
     router.use((req, res, next) => {
         const token = req.headers['autherization'];
         if (!token) {
@@ -121,48 +125,62 @@ module.exports = (router) => {
         }
     });
 
-
-    async function getVoteHistoryItems(callback, req) {
-        let userId = req.decoded.user_id;
-        let eventCount = await Event.collection.find().count();
-        VoteHistory.find({
-            user_id: userId
-        }, function (err, previousVoteArray) {
-            callback(null, previousVoteArray);
-        });
-    }
-
-    async function remainEventArray(callback, previousVoteArray) {
-        let remainEvents = [];
-        let Events = await Event.collection.find();
-        _.each(Events, function (event) {
-            _.each(previousVoteArray, function (historyItem) {
-                if (event._id != historyItem.event_id) {
-                    remainEvents.push(event)
-                }
-            });
-        }); //get the array difference
-        callback(null, remainEvents);
-    }
-
-
     router.get('/allRemainEventsForUser', function (req, res) {
-        async.waterfall([
-            function (callback) {
-                getVoteHistoryItems(callback, req);
-            },
-            function (previousVoteArray, callback) {
-                remainEventArray(callback, remainEvents, previousVoteArray);
+        Event.find({}, function (err, events) {
+            if (err) {
+                res.json({
+                    success: false,
+                    message: " Error occured :" + err
+                });
+            } else {
+                res.json({
+                    success: true,
+                    message: "Remain Events For User",
+                    events: events
+                });
             }
-        ], function (err, remainEvents, previousVoteArray) {
-            res.json({
-                success: true,
-                message: "Got All Remain Events  Successfully...!",
-                events: remainEvents
-            });
+
         });
+    });
 
+    function getAggrigatedResults(events) {
+        const aggrigateEvents = [];
+        _.each(events, function (event) {
+            const aggrigateEvent = {
+                _id: event._id,
+                awayName: event.awayName,
+                homeName: event.homeName,
+                group: event.group,
+                sport: event.sport,
+                country: event.country
+            };
 
+            if (event.votes.length > 0) {
+                let result = _.countBy(event.votes, "result");
+                aggrigateEvent.results = result;
+            } else {
+                aggrigateEvent.results = {};
+            }
+            aggrigateEvents.push(aggrigateEvent)
+        });
+        return aggrigateEvents;
+    }
+
+    router.get('/allEventResults', function (req, res) {
+        Event.find({}, function (err, events) {
+            if (err) {
+                res.json({
+                    success: false,
+                    message: " Error occured :" + err
+                });
+            } else {
+                res.json({
+                    success: true,
+                    massege: "retun aggrigated results",
+                    results: getAggrigatedResults(events)
+                });
+            }
+        });
     });
 
     return router;

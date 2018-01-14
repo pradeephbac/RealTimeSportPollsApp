@@ -1,0 +1,76 @@
+.result-page-wrapper {
+  .result-cage {
+    margin: 10px;
+    padding: 15px;
+    border-radius: 3px;
+    z-index: 20;
+    box-shadow: 2px 2px 3px 1px #b3adad;
+    .result-header{
+        display: flex;
+        justify-content: center;
+        margin-top: -10px; 
+        padding-bottom: 5px;
+        border-bottom: 1px dashed #ddd;
+        margin-bottom: 12px;
+        .vs-devider{
+            margin-left: 30px;
+            margin-right: 30px;
+            font-size: 22px;
+            font-weight: 600;
+            border-radius: 3px;
+            background: #ddd;
+            padding: 5px;
+        }
+        .away-name{
+            padding-top: 7px;
+        }
+        .home-name{
+            padding-top: 7px;
+        }
+        .icon-margin{
+            margin-right: 5px;
+        }
+    }
+    .result-score-wrapper{
+        padding: 10px;
+        .info-section{
+            text-align: center;
+            .sport-name{
+                color: #8576d4;
+                font-weight: 600;
+                position: relative;
+                top: 4px;
+            }
+            .country-name{
+                color: #8576d4;
+                font-weight: 600;
+                position: relative;
+                top: 16px;
+            }
+            .voted-count{
+                position: relative;
+                bottom: -17px;
+                color: #948d8d;
+                padding: 8px;
+            }
+
+        }
+        .result-calculation-column{
+            border-left: 1px solid #ddd;
+            padding-left: 21px;
+            .result-area{
+                .horizontal-bar{
+                    display: flex;   
+                     margin: 15px;
+                     .icon-margin{
+                        margin-right: 10px;  
+                     }
+                     .progress{
+                        width: 100%
+                     }
+                }
+            }
+        }
+    }
+  }
+}

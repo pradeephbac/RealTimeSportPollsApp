@@ -7,8 +7,8 @@ describe('client App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('should display welcome message as "Realtime Sports Polling"', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!');
+    expect(page.getParagraphText()).toEqual('Realtime Sports Polling');
   });
 });

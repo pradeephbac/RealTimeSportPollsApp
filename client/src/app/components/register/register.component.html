@@ -1,5 +1,5 @@
-<h1 class="page-header">Registration Page</h1>
-
+<h3 class="page-header">Registration For Voting...!</h3>
+<br>
 <!-- Custom Success/Error Message -->
 <div class="row show-hide-message">
   <div [ngClass]="messageClass">
@@ -14,7 +14,7 @@
   <div class="form-group">
     <label for="username">Username</label>
     <div [ngClass]="{'has-error': (form.controls.username.errors && form.controls.username.dirty), 'has-success': !form.controls.username.errors}">
-      <input type="text" name="username" class="form-control" autocomplete="off" placeholder="*Username" formControlName="username"  />
+      <input type="text" name="username" class="form-control" autocomplete="off" placeholder="*Username" formControlName="username" [autofocus]="true" />
       <!-- Validation -->
       <ul class="help-block">
         <li *ngIf="form.controls.username.errors?.required && form.controls.username.dirty">This field is required</li>

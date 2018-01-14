@@ -1,0 +1,64 @@
+<h2 class="page-header">Voted Events</h2>
+<br>
+<div class="panel panel-default event-panel result-page-wrapper" *ngFor='let poll of pollsResults;let i=index'>
+
+  <div class="container result-cage" *ngIf="(poll.results.AWAY||0 + poll.results.HOME || 0 + poll.results.DRAW || 0) > 0">
+    <div class="result-header">
+      <span class="home-name">
+        <i class="fa fa-home icon-margin"></i>{{poll.homeName}}</span>
+      <span class="vs-devider">Vs</span>
+      <span class="away-name">
+        <i class="fa fa-plane icon-margin"></i>{{poll.awayName}}</span>
+    </div>
+
+    <div class="row result-score-wrapper">
+      <div class="col-md-3 info-section">
+
+        <div class="sport-name">
+          <i class="fa fa-trophy heading-icons"></i> {{poll.sport}}</div>
+
+        <div class="country-name">
+          <i class="fa fa-globe heading-icons"></i> {{poll.country}}</div>
+
+        <div class="voted-count">
+          <i class="fa fa-users"></i>{{(poll.results.AWAY || 0) + (poll.results.HOME || 0)+ (poll.results.DRAW|| 0)}}</div>
+      </div>
+      <div class="col-md-9 result-calculation-column">
+
+        <div class="result-area">
+
+          <div class="horizontal-bar">
+            <i class="fa fa-home icon-margin"></i>
+            <div class="progress">
+              <div class="progress-bar  progress-bar-success progress-bar-striped active" role="progressbar" [attr.aria-valuenow]="((poll.results.HOME|| 0) / ((poll.results.AWAY || 0) + (poll.results.HOME || 0)+ (poll.results.DRAW|| 0) ))* 100"
+                aria-valuemin="0" aria-valuemax="100" [ngStyle]="{'width': ((poll.results.HOME|| 0) / ((poll.results.AWAY || 0) + (poll.results.HOME || 0)+ (poll.results.DRAW|| 0) ))* 100+'%'}">
+                {{ ((poll.results.HOME|| 0) / ((poll.results.AWAY || 0) + (poll.results.HOME || 0)+ (poll.results.DRAW|| 0) ))* 100}}%
+              </div>
+            </div>
+          </div>
+
+          <div class="horizontal-bar">
+            <i class="fa fa-balance-scale icon-margin"></i>
+            <div class="progress">
+              <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" [attr.aria-valuenow]="((poll.results.HOME|| 0) / ((poll.results.AWAY || 0) + (poll.results.HOME || 0)+ (poll.results.DRAW|| 0) ))* 100"
+                aria-valuemin="0" aria-valuemax="100" [ngStyle]="{'width': ((poll.results.DRAW|| 0) / ((poll.results.AWAY || 0) + (poll.results.HOME || 0)+ (poll.results.DRAW|| 0) ))* 100+'%'}">
+                {{ ((poll.results.DRAW|| 0) / ((poll.results.AWAY || 0) + (poll.results.HOME || 0)+ (poll.results.DRAW|| 0) ))* 100}}%
+              </div>
+            </div>
+          </div>
+
+          <div class="horizontal-bar">
+            <i class="fa fa-plane icon-margin"></i>
+            <div class="progress">
+              <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" [attr.aria-valuenow]="((poll.results.HOME|| 0) / ((poll.results.AWAY || 0) + (poll.results.HOME || 0)+ (poll.results.DRAW|| 0) ))* 100"
+                aria-valuemin="0" aria-valuemax="100" [ngStyle]="{'width': ((poll.results.AWAY|| 0) / ((poll.results.AWAY || 0) + (poll.results.HOME || 0)+ (poll.results.DRAW|| 0) ))* 100+'%'}">
+                {{ ((poll.results.AWAY|| 0) / ((poll.results.AWAY || 0) + (poll.results.HOME || 0)+ (poll.results.DRAW|| 0) ))* 100}}%
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

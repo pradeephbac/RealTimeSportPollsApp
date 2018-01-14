@@ -10,16 +10,27 @@ module.exports = function (config) {
       require('karma-chrome-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage-istanbul-reporter'),
-      require('@angular/cli/plugins/karma')
+      require('@angular/cli/plugins/karma'),
+      require('karma-teamcity-reporter')
     ],
     client:{
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
+    files: [
+      { pattern: './src/test.ts', watched: false }
+    ],
     coverageIstanbulReporter: {
       reports: [ 'html', 'lcovonly' ],
-      fixWebpackSourcePaths: true
+      fixWebpackSourcePaths: true,
+      thresholds: {
+        statements: 90,
+        lines: 90,
+        branches: 90,
+        functions: 90
+      }
     },
     angularCli: {
+      config: './angular-cli.json',
       environment: 'dev'
     },
     reporters: ['progress', 'kjhtml'],
