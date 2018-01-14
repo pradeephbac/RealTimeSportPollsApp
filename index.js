@@ -1,5 +1,5 @@
 var express = require('express');
-const app = express(); 
+const app = express();
 const router = express.Router();
 const mongoose = require('mongoose');
 const config = require('./config/database');
@@ -30,7 +30,7 @@ mongoose.connect(config.uri, (err) => {
 app.use(cors({
     origin: "http://localhost:4200"
 }))
- 
+
 
 //set build directory of Angular2 -midelwares
 app.use(bodyParser.urlencoded({
@@ -46,8 +46,8 @@ app.use('/vote', votes);
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname + '/client/dist/index.html'));
 });
- 
- 
+
+
 app.listen(8080, () => {
     console.log('server starts at port 8080');
 });
@@ -56,15 +56,15 @@ app.listen(8080, () => {
 /**
  * Socket events
  */
-io.on('connection', function(socket){
+io.on('connection', function (socket) {
     console.log('a user connected');
 
-    socket.on('disconnect', function(){
-      console.log('user disconnected');
+    socket.on('disconnect', function () {
+        console.log('user disconnected');
     });
 
-    socket.on('message', function(msg){
+    socket.on('message', function (msg) {
         console.log('message recieved');
         console.log(msg);
-      });
+    });
 });

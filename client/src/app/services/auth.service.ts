@@ -16,37 +16,13 @@ export class AuthService {
   authToken;
   options;
   user;
-  //private url = 'http://localhost:8080';
-  //private socket: SocketIOClient.Socket;
-  // , private socket: Socket
+
   constructor(private http: Http, private socket: Socket) {
-
-    //this.socket = io();
   }
-  sendMessage(msg: string){
-    console.log("emmit message")
+  sendMessage(msg: string) {
+    console.log("emit message from client side browser")
     this.socket.emit("message", msg);
-}
-
-/*sendMessage(msg: string) {
-  console.log("Emit from front end");
-    this.socket.emit('message', msg);
-}*/
-
-/*getMessages() {
-  let observable = new Observable(observer => {
-    this.socket = io(this.url);
-    this.socket.on('message', (data) => {
-      console.log("Recived to front end");
-      console.log(data)
-      observer.next(data);
-    });
-    return () => {
-      this.socket.disconnect();
-    };
-  })
-  return observable;
-}*/
+  }
 
   registerNewUser(user) {
     return this.http.post(this.LOCAL_DOMAIN + '/authentication/register', user).map(res => res.json());
@@ -83,7 +59,7 @@ export class AuthService {
     this.authToken = localStorage.getItem('token');
   }
 
-  storeuserInFrontEnd(token, user) { 
+  storeuserInFrontEnd(token, user) {
     localStorage.setItem('token', token);
     localStorage.setItem('user', JSON.stringify(user));
     this.token = token;
