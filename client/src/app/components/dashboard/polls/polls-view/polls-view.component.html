@@ -18,19 +18,20 @@
           <div class="row">
              <div class="col-md-3 left-cage">
                <div class="header-info-position top-header-elemenet"><i class="fa fa-trophy heading-icons"></i>{{poll.sport}}</div> 
-               <div  class="header-info-position lower-header-elemenet"><i class="fa fa-globe heading-icons"></i>{{poll.country}}</div>
+               <div  class="header-info-position lower-header-elemenet"><i class="fa fa-globe heading-icons"></i>{{poll.province}}</div>
              </div> 
              
              <div class="col-md-8 right-cage">
               
               <div class="game-description"> Who will win the game between <span class="game-name"><strong>{{poll.name}}</strong></span> </div> 
-              <div class="team-description"> <i class="fa fa-home heading-icons"></i> Home: <span class="team-name">{{poll.awayName}}</span> Vs <i class="fa fa-plane heading-icons"></i> Away : <span class="team-name">{{poll.awayName}}</span> </div> 
+              <div class="team-description"> <i class="fa fa-home heading-icons"></i> Home: <span class="team-name">{{poll.homeName}}</span> Vs <i class="fa fa-plane heading-icons"></i> Away : <span class="team-name">{{poll.awayName}}</span> </div> 
               <div class="btn-group btn-group row">
                   <button type="button" [disabled]="poll.alreadyVoted" class="btn btn-primary vote-button-styles" (click)="voteForEvent(poll,'HOME')"> <i class="fa fa-home heading-icons"></i> Home</button>
                   <button type="button" [disabled]="poll.alreadyVoted" class="btn btn-success vote-button-styles" (click)="voteForEvent(poll,'DRAW')"> <i class="fa fa-balance-scale heading-icons"></i>Draw</button>
                   <button type="button" [disabled]="poll.alreadyVoted" class="btn btn-info vote-button-styles" (click)="voteForEvent(poll,'AWAY')"> <i class="fa fa-plane heading-icons"></i>Away</button>
+                  <div  class="voted-count"  *ngIf="poll.voteCount > 0"><i class="fa fa-users"></i>  {{poll.voteCount}}</div>
                 </div>
-                <div  class="voted-count"  *ngIf="poll.voteCount > 0"><i class="fa fa-users"></i>  {{poll.voteCount}}</div>
+               
             </div> 
           </div> 
          </div>  

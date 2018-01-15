@@ -13,11 +13,6 @@ const eventSchema = new Schema({
         type: String,
         required: true 
     },
-    createdAt: {
-        type: Date, 
-        required: true, 
-        default: Date.now 
-    },
     group: {
         type: String,
         required: true 
@@ -34,11 +29,7 @@ const eventSchema = new Schema({
         type: String,
         required: true 
     },
-    country: {
-        type: String,
-        required: true 
-    },
-    state: {
+    province: {
         type: String,
         required: true 
     },
@@ -46,4 +37,4 @@ const eventSchema = new Schema({
 
 });
 
-module.exports = mongoose.model('Event', eventSchema); 
+module.exports = mongoose.model('SportEvent', eventSchema); 

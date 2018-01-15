@@ -56,8 +56,7 @@ export class LoginComponent implements OnInit {
         this.enableForm(); 
       }else{
         this.messageClass = "alert alert-success";
-        this.message = data.message;
-        console.log(data.user)
+        this.message = data.message; 
         this.authService.storeuserInFrontEnd(data.token, data.user);
         setTimeout(() => {
           this.router.navigate(['/dashboard']); // Redirect to login view

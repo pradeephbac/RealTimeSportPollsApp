@@ -26,10 +26,12 @@
        text-align: center;
        padding: 14px;
        margin-left: 15px !important;
+       margin-right: 15px !important;
        background: #ddd;
        border-right: 1px solid #a59494;
        .top-header-elemenet {
          border-bottom: 1px dashed #8d1616;
+         font-weight: 600;
        }
        .lower-header-elemenet {
          margin-top: -6px !important;
@@ -56,11 +58,10 @@
          color: rgb(58, 56, 56)
        }
        .voted-count {
-         width: 40px;
-         position: absolute;
-         right: -45px;
-         bottom: 7px;
-         color: #ada7a7;
+        position: relative;
+        top: 17px;
+        left: 30px;
+        color: #ada7a7;
        }
      }
    }

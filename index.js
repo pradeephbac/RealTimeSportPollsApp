@@ -2,19 +2,15 @@ var express = require('express');
 const app = express();
 const router = express.Router();
 const mongoose = require('mongoose');
-const config = require('./config/database');
-
 const fs = require('fs');
-
-var path = require('path');
-const http = require('http');
+var path = require('path'); 
 var bodyParser = require('body-parser');
 const authentication = require('./routes/authentication')(router);
 const events = require('./routes/events')(router);
 const votes = require('./routes/votes')(router);
-
-const server = http.createServer(app);
-var io = require('socket.io').listen(server);
+const config = require('./config/database');
+var server = require('http').createServer(app)
+var io = require('socket.io')(server);
 
 var cors = require('cors');
 
@@ -30,7 +26,6 @@ mongoose.connect(config.uri, (err) => {
 app.use(cors({
     origin: "http://localhost:4200"
 }))
-
 
 //set build directory of Angular2 -midelwares
 app.use(bodyParser.urlencoded({
@@ -56,15 +51,15 @@ app.listen(8080, () => {
 /**
  * Socket events
  */
-io.on('connection', function (socket) {
-    console.log('a user connected');
-
+io.on('connection', function (socket) { 
+    //new socket user connected  
     socket.on('disconnect', function () {
-        console.log('user disconnected');
+        //socket user disconnected
     });
 
-    socket.on('message', function (msg) {
-        console.log('message recieved');
-        console.log(msg);
-    });
+    //socket communication triggers when update - vote status reached
+    socket.on('update-vote',function(message){ 
+      io.emit('update-vote', "success" );
+    })
+
 });

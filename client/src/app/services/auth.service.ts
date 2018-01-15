@@ -2,26 +2,18 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { tokenNotExpired } from 'angular2-jwt';
+import { environment } from '../../environments/environment';
 
-import { Subject } from 'rxjs/Subject';
-import * as io from 'socket.io-client';
-import { Observable } from 'rxjs/Observable';
-
-import { Socket } from 'ng-socket-io';
 @Injectable()
 export class AuthService {
 
-  LOCAL_DOMAIN = 'http://localhost:8080';
+  LOCAL_DOMAIN = environment.LOCAL_DOMAIN;
   token;
   authToken;
   options;
   user;
 
-  constructor(private http: Http, private socket: Socket) {
-  }
-  sendMessage(msg: string) {
-    console.log("emit message from client side browser")
-    this.socket.emit("message", msg);
+  constructor(private http: Http) {
   }
 
   registerNewUser(user) {

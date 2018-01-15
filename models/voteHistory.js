@@ -15,8 +15,6 @@ const voteHistorySchema = new Schema({
         required: true
     }
 
-
-
 });
 
 module.exports = mongoose.model('VoteHistory', voteHistorySchema);

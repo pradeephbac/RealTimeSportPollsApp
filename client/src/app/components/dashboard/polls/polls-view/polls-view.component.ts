@@ -4,6 +4,7 @@ import { of } from 'rxjs/observable/of';
 import { FormsModule } from '@angular/forms';
 import { PollsService } from '../../../../services/pollsServices/polls.service';
 import { AuthService } from '../../../../services/auth.service';
+import { PollsSocketService } from '../../../../services/sockets/polls-socket.service';
 import * as _ from 'underscore';
 @Component({
   selector: 'app-polls-view',
@@ -15,7 +16,7 @@ export class PollsViewComponent implements OnInit {
   sportFilter: any = { sport: '' };
   remainpolls: any = [{ events: [] }];
   message: any;
-  constructor(private pollsService: PollsService, private authService: AuthService) {
+  constructor(private pollsService: PollsService, private authService: AuthService, private pollsSocketService: PollsSocketService) {
   }
 
   getRemainPolls(): void {
@@ -40,7 +41,12 @@ export class PollsViewComponent implements OnInit {
 
   updateVoteForEvent(updatedPoll, voteResult): void {
     this.pollsService.updatePollsResult(updatedPoll, voteResult).subscribe((message) => {
+      // updated Event will recived Here
       this.message = message;
+      if ( message.success ) {
+        // emit socket IO
+        this.pollsSocketService.updateVoteSocketMessage(); 
+      }
     });
   }
 
@@ -65,6 +71,11 @@ export class PollsViewComponent implements OnInit {
 
   ngOnInit() {
     this.getRemainPolls();
+    this.pollsSocketService.getUpdateVoteSocketMessage().subscribe(serverResponse => {
+      if(serverResponse === 'success'){
+        this.getRemainPolls();
+      }
+    });
   }
 
 }

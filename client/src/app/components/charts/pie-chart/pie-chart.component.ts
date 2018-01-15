@@ -10,7 +10,7 @@ declare var jQuery: any;
 })
 export class PieChartComponent implements OnInit {
     polls: any = [{ events: [] }];
-    eventsByCountry: any;
+    eventsByProvince: any;
     constructor(
         private pollsService: PollsService
     ) { }
@@ -18,26 +18,26 @@ export class PieChartComponent implements OnInit {
     async getPolls(): Promise<any> {
         await this.pollsService.getAllPolls().subscribe((polls) => {
             this.polls = polls;
-            this.eventsByCountry = _.countBy(this.polls.events, 'country');
+            this.eventsByProvince = _.countBy(this.polls.events, 'province');
 
-            this.renderChart(this.eventsByCountry);
+            this.renderChart(this.eventsByProvince);
         });
     }
     ngOnInit() {
         this.getPolls();
 
     }
-    renderChart(countryGroupData) {
-        const countryEventCountArray = [];
-        for (const key in countryGroupData) {
-            if (countryGroupData.hasOwnProperty(key)) {
+    renderChart(provinceGroupData) {
+        const provinceEventCountArray = [];
+        for (const key in provinceGroupData) {
+            if (provinceGroupData.hasOwnProperty(key)) {
                 const sport = {
                     name: '',
                     y: 0
                 };
                 sport.name = key;
-                sport.y = countryGroupData[key];
-                countryEventCountArray.push(sport);
+                sport.y = provinceGroupData[key];
+                provinceEventCountArray.push(sport);
             }
         }
         jQuery('#container-pie').highcharts({
@@ -48,7 +48,7 @@ export class PieChartComponent implements OnInit {
                 type: 'pie'
             },
             title: {
-                text: 'Poll events by Country'
+                text: 'Poll events by Province'
             },
             tooltip: {
                 pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -66,9 +66,9 @@ export class PieChartComponent implements OnInit {
                 }
             },
             series: [{
-                name: 'Polls from Country',
+                name: 'Polls from Province',
                 colorByPoint: true,
-                data: countryEventCountArray
+                data: provinceEventCountArray
             }]
         });
     }

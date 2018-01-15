@@ -13,12 +13,10 @@ export class HomeComponent implements OnInit {
   constructor(private authService: AuthService) { }
   async getPolls(): Promise<any> {
     await this.authService.loadData().subscribe((eventResponse) => {
-      console.log(eventResponse);
     });
   }
   ngOnInit() {
     this.getPolls();
-    this.authService.sendMessage('Test Message From Home');
   }
 
 }

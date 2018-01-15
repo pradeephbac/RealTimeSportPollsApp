@@ -1,5 +1,6 @@
 <h2 class="page-header">Voted Events</h2>
 <br>
+<div *ngIf="pollsResults && pollsResults.length === 0">No any New Results...Go and Vote...!!!</div> 
 <div class="panel panel-default event-panel result-page-wrapper" *ngFor='let poll of pollsResults;let i=index'>
 
   <div class="container result-cage" *ngIf="(poll.results.AWAY||0 + poll.results.HOME || 0 + poll.results.DRAW || 0) > 0">
@@ -18,7 +19,7 @@
           <i class="fa fa-trophy heading-icons"></i> {{poll.sport}}</div>
 
         <div class="country-name">
-          <i class="fa fa-globe heading-icons"></i> {{poll.country}}</div>
+          <i class="fa fa-globe heading-icons"></i> {{poll.province}}</div>
 
         <div class="voted-count">
           <i class="fa fa-users"></i>{{(poll.results.AWAY || 0) + (poll.results.HOME || 0)+ (poll.results.DRAW|| 0)}}</div>

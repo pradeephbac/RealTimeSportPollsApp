@@ -12,7 +12,7 @@ const fs = require('fs');
 module.exports = (router) => {
 
     async function readEventsFromExternalFile(callback) {
-        let reqPath = path.join(__dirname, '../mock/events.json'); //relative  path to document
+        let reqPath = path.join(__dirname, '../mock/sportEvents.json'); //relative  path to document
         fs.readFile(reqPath, 'utf8', function (err, eventData) {
             //Handle Error
             if (!err) {
@@ -152,7 +152,7 @@ module.exports = (router) => {
                 homeName: event.homeName,
                 group: event.group,
                 sport: event.sport,
-                country: event.country
+                province: event.province
             };
 
             if (event.votes.length > 0) {

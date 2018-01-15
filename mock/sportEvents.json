@@ -1,0 +1,94 @@
+[{
+        "awayName": "Mohomad Club Players",
+        "group": "Golden Football",
+        "homeName": "National Sports Club",
+        "name": "National Sports Club - Mohomad Club Players",
+        "sport": "FOOTBALL",
+        "province": "CENTRAL PROVINCE"
+    },
+    {
+        "awayName": "WESTER TIGERS",
+        "group": "Golden Football",
+        "homeName": "UWA Heros",
+        "name": "UWA Heros - WESTER TIGERS",
+        "sport": "FOOTBALL",
+        "province": "WESTERN PROVINCE"
+    }, {
+        "awayName": "Union Colombo Cricketers",
+        "group": "T20 Nationals",
+        "homeName": "CHRF Pride",
+        "name": "CHRF Pride - Union Colombo Cricketers",
+        "sport": "CRICKET",
+        "province": "SOUTH PROVINCE"
+    }, {
+        "awayName": "Kandy Youth",
+        "group": "National Vollyball Championship",
+        "homeName": "Colombo Group",
+        "name": "Colombo Group - Kandy Youth",
+        "sport": "VOLLYBALL",
+        "province": "WESTERN PROVINCE"
+    }, {
+        "awayName": "Western Heros",
+        "group": "Golden Football",
+        "homeName": "CENTRAL Heros",
+        "name": "CENTRAL Heros - Western Heros",
+        "sport": "FOOTBALL",
+        "province": "CENTRAL PROVINCE"
+    }, {
+        "awayName": "Precident's Club",
+        "group": "Golden Football",
+        "homeName": "Gajaba Sports Club",
+        "name": "Gajaba Sports Club - Precident's Club",
+        "sport": "FOOTBALL",
+        "province": "CENTRAL PROVINCE"
+    }, {
+        "awayName": "Sanath Club",
+        "group": "T20 Nationals",
+        "homeName": "Muththaiya Club",
+        "name": "Muththaiya Club - Sanath Club",
+        "sport": "CRICKET",
+        "province": "WESTERN PROVINCE"
+    }, {
+        "awayName": "Maharagama Youth",
+        "group": "National Vollyball Championship",
+        "homeName": "YOUTH Colombo",
+        "name": "YOUTH Colombo - Maharagama Youth",
+        "sport": "VOLLYBALL",
+        "province": "SOUTH PROVINCE"
+    }, {
+        "awayName": "University of Kalaniya",
+        "group": "Teak-won-do Nationals",
+        "homeName": "University Of Jaffna",
+        "name": "University Of Jaffna - University of Kalaniya",
+        "sport": "TEAK-KOWN-DO",
+        "province": "WESTERN PROVINCE"
+    }, {
+        "awayName": "Sri Lanka ARMY",
+        "group": "Teak-won-do Nationals",
+        "homeName": "Dragans Club",
+        "name": "Dragans Club - Sri Lanka ARMY",
+        "sport": "TEAK-KOWN-DO",
+        "province": "SOUTH PROVINCE"
+    }, {
+        "awayName": "Youth Club",
+        "group": "Golden Football",
+        "homeName": "Colombo Sports Club",
+        "name": "Colombo Sports Club - Youth Club",
+        "sport": "FOOTBALL",
+        "province": "WESTERN PROVINCE"
+    }, {
+        "awayName": "Mohomad Club Players",
+        "group": "Golden Football",
+        "homeName": "National Youth",
+        "name": "National Youth - Mohomad Club Players",
+        "sport": "FOOTBALL",
+        "province": "CENTRAL PROVINCE"
+    }, {
+        "awayName": "United Malambe",
+        "group": "Golden Football",
+        "homeName": "SANDERS Colombo",
+        "name": "SANDERS Colombo - United Malambe",
+        "sport": "FOOTBALL",
+        "province": "CENTRAL PROVINCE"
+    }
+]
