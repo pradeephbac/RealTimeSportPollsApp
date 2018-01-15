@@ -17,7 +17,6 @@ describe('PollsService', async() => {
 
   it('should be created', inject([PollsService], (pollsService) => {
     expect(pollsService).toBeTruthy();
-    expect(pollsService).toBeDefined();
   }));
 
   it('should be defined', inject([PollsService], (pollsService) => {
@@ -25,7 +24,7 @@ describe('PollsService', async() => {
   }));
 
   it('Should load Access Token', inject([PollsService], (pollsService) => {
-    expect(pollsService.loadToken()).toBe(undefined);
+    expect(pollsService.loadToken()).not.toBeDefined();
   }));
   /*it('Should load Polls Objects', inject([PollsService, HttpClientModule, HttpModule],  (pollsService) => {
     expect(pollsService.getAllPolls().length).toBeGreaterThan(1);

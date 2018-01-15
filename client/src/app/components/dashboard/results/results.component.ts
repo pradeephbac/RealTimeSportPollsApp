@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PollsService } from '../../../services/pollsServices/polls.service';
 import { AuthService } from '../../../services/auth.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { PollsSocketService } from '../../../services/sockets/polls-socket.service';
 import {Router} from '@angular/router';
 @Component({
   selector: 'app-results',
@@ -13,7 +14,7 @@ export class ResultsComponent implements OnInit {
   pollsResults: any;
 
   constructor( private pollsService: PollsService, private authService: AuthService,
-    private _flashMessagesService: FlashMessagesService, private router: Router ) { }
+    private _flashMessagesService: FlashMessagesService, private router: Router, private pollsSocketService: PollsSocketService ) { }
 
   getPollsResults(): void {
     this.pollsService.getPollsResults()
@@ -32,6 +33,11 @@ export class ResultsComponent implements OnInit {
 
   ngOnInit() {
     this.getPollsResults();
+    this.pollsSocketService.getUpdateVoteSocketMessage().subscribe(serverResponse => {
+      if ( serverResponse === 'success') {
+         this.getPollsResults();
+      }
+    });
   }
 
 }
