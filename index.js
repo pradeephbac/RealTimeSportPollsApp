@@ -5,10 +5,14 @@ const mongoose = require('mongoose');
 const fs = require('fs');
 var path = require('path'); 
 var bodyParser = require('body-parser');
+
+//route paths
 const authentication = require('./routes/authentication')(router);
 const events = require('./routes/events')(router);
 const votes = require('./routes/votes')(router);
 const config = require('./config/database');
+
+//socket io configuration
 var server = require('http').createServer(app)
 var io = require('socket.io')(server);
 
@@ -34,6 +38,8 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 app.use(express.static(__dirname + '/client/dist'));
+
+//Api routes
 app.use('/authentication', authentication);
 app.use('/events', events);
 app.use('/vote', votes);
@@ -42,11 +48,9 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname + '/client/dist/index.html'));
 });
 
-
 app.listen(8080, () => {
     console.log('server starts at port 8080');
 });
-
 
 /**
  * Socket events
