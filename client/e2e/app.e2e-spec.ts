@@ -17,6 +17,8 @@ describe('client App', () => {
   it('Set Login Credentails correctly', () => {
     page.setCredentials();
   });
-
+  it('Redirect to Dashboard', () => {
+    page.checkDashBoardURL();
+  });
 
 });

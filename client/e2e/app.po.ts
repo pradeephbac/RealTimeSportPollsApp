@@ -16,12 +16,16 @@ export class AppPage {
     username.sendKeys('chamal');
     password.sendKeys('chamal@123');
     submit.click();
+    browser.sleep(3000);
+  }
+
+  checkDashBoardURL(){
     browser.wait(browser.getCurrentUrl(), 3000);
     return browser.wait(function () {
-      return browser.getCurrentUrl().then(function (url) { 
+      return browser.getCurrentUrl().then(function (url) {
           return url = '#/dashboard';
       });
-  });
+    });
   }
 
   getParagraphText() {
