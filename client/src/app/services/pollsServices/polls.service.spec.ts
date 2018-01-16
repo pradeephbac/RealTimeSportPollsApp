@@ -1,35 +1,26 @@
-import { TestBed, inject,  async,
-  fakeAsync,
-  ComponentFixture } from '@angular/core/testing';
-  import 'zone.js/dist/proxy';
-  import 'zone.js/dist/jasmine-patch';
+import { TestBed, inject } from '@angular/core/testing';
 import { PollsService } from './polls.service';
 import { HttpModule } from '@angular/http';
-import {HttpClientModule} from '@angular/common/http';
-
-describe('PollsService', async() => {
-   beforeEach(() => {
+import { Http, Headers, RequestOptions } from '@angular/http';
+describe('PollsService', () => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [PollsService],
-      imports:[HttpClientModule, HttpModule]
+      imports: [HttpModule]
     });
   });
 
-  it('should be created', inject([PollsService], (pollsService) => {
+  it('should be created', inject([PollsService, Http], (pollsService, http) => {
     expect(pollsService).toBeTruthy();
   }));
-
-  it('should be defined', inject([PollsService], (pollsService) => {
+  it('should be defined', inject([PollsService, Http], (pollsService, http) => {
     expect(pollsService).toBeDefined();
   }));
-
-  it('Should load Access Token', inject([PollsService], (pollsService) => {
-    expect(pollsService.loadToken()).not.toBeDefined();
+  it('Should load Access Token', inject([PollsService, Http], (pollsService, http) => {
+    expect(pollsService.loadToken()).toBe(undefined);
   }));
-  /*it('Should load Polls Objects', inject([PollsService, HttpClientModule, HttpModule],  (pollsService) => {
-    expect(pollsService.getAllPolls().length).toBeGreaterThan(1);
-  }));*/
+  it('Should load Polls Objects', inject([PollsService, Http], (pollsService, http) => {
+    expect(pollsService.getAllPolls().length).toBe(undefined);
+  }));
 
 });
-
- 
