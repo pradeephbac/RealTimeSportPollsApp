@@ -3,7 +3,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { PollsViewComponent } from './polls-view.component';
 
 describe('PollsViewComponent', () => {
- /* let component: PollsViewComponent;
+  // uncomment this part and run npm test
+
+  /* let component: PollsViewComponent;
   let fixture: ComponentFixture<PollsViewComponent>;
 
   beforeEach(async(() => {

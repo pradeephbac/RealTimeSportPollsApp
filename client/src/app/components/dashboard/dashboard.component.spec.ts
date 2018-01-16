@@ -3,6 +3,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DashboardComponent } from './dashboard.component';
 
 describe('DashboardComponent', () => {
+  // uncomment this part and run npm test
+
   /*let component: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
 
